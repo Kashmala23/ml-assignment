@@ -1,52 +1,68 @@
-# BankWise — Bank Customer Analytics
+# BankWise: Bank Customer Analytics
 
-A beginner-friendly full-stack machine learning project using the supplied Churn_Modelling.csv dataset.
+## Project Overview
+BankWise is a machine learning project that analyzes bank customer data using two models: Linear Regression and Logistic Regression. The project includes a simple web interface built with HTML, CSS, and JavaScript.
 
-## Three models
-1. Linear Regression: estimates account balance; report R² and MAE.
-2. Logistic Regression: predicts customer churn; report accuracy.
-3. Decision Tree Classifier: predicts churn using a second, more interpretable model; report accuracy.
+## Business Problems
 
-## Run on Windows / VS Code
+1. **Balance Prediction:** Estimate a customer's bank account balance based on selected customer information.
+2. **Customer Churn Prediction:** Predict whether a customer is likely to leave the bank.
 
-1. Extract this folder.
-2. Open the folder in VS Code.
-3. Open Terminal → New Terminal.
-4. (Optional but recommended) create and activate a virtual environment:
+## Machine Learning Models
+
+### 1. Linear Regression
+- **Type:** Regression
+- **Purpose:** Predicts a customer's bank account balance.
+- **Target variable:** `Balance`
+
+### 2. Logistic Regression
+- **Type:** Classification
+- **Purpose:** Predicts whether a customer will leave the bank.
+- **Target variable:** `Exited`
+- **Output:** Likely to leave or likely to stay.
+
+## Dataset
+The project uses the `Churn_Modelling.csv` dataset, which contains bank customer information, including age, geography, credit score, account balance, and customer exit status.
+
+## Technologies Used
+- **HTML** â€” webpage structure
+- **CSS** â€” webpage styling and layout
+- **JavaScript** â€” user interactions
+- **Python** â€” backend and machine learning
+- **Pandas** â€” data processing
+- **Scikit-learn** â€” model training
+- **FastAPI** â€” backend API
+
+## Project Features
+- User-friendly web interface
+- Customer balance prediction using Linear Regression
+- Customer churn classification using Logistic Regression
+- Integration between the frontend and Python backend
+
+## How to Run the Project on macOS
+
+1. Open the project folder in VS Code.
+2. Open the terminal in VS Code.
+3. Install the required packages:
+
    ```bash
-   python -m venv .venv
-   .venv\Scripts\activate
+   python3 -m pip install -r requirements.txt
    ```
-5. Install packages:
+
+4. Make sure `Churn_Modelling.csv` is in the project folder.
+5. Train the two models:
+
    ```bash
-   pip install -r requirements.txt
+   python3 train_models.py
    ```
-6. Run the app:
+
+6. Start the web application:
+
    ```bash
-   uvicorn main:app --reload
+   python3 -m uvicorn main:app --reload
    ```
-7. Open http://127.0.0.1:8000
-8. API documentation: http://127.0.0.1:8000/docs
 
-## Retrain models
-The trained model files are included. To retrain, run:
-```bash
-python train_models.py
-```
+7. Open `http://127.0.0.1:8000` in your browser.
 
-## API endpoints
-- POST `/predict/regression`
-- POST `/predict/classification`
-- POST `/predict/tree`
-- GET `/api/metrics`
-
-Each prediction endpoint expects customer fields:
-`CreditScore`, `Geography`, `Gender`, `Age`, `Tenure`, `NumOfProducts`,
-`HasCrCard`, `IsActiveMember`, `EstimatedSalary`.
-
-## Important notes
-- The dataset has 10,000 records and `Exited` indicates whether the customer left.
-- `Balance` is used as the numeric target for the regression demonstration. This is a modelling exercise, not a forecast of bank profit.
-- Churn predictions are estimates and should not be treated as certain outcomes.
-- The metrics are calculated on a held-out 20% test set.
-- Understand the code before your viva; the assignment asks you to explain your implementation.
+## Conclusion
+This project demonstrates how regression and classification can be applied to banking data to support balance estimation and customer churn analysis through a simple web application.
